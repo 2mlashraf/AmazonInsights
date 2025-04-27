@@ -1,5 +1,5 @@
 # 📊 Amazon Products Data Analysis 
-
+![Amazon Sales Dataset EDA.jpg](https://user-images.githubusercontent.com/109474596/204128780-5a28ed57-53f6-4cf7-8d22-c8b8598138a1.png)
 Welcome to our Amazon Products Data Analysis project!  
 In this project, we dive deep into an Amazon products dataset to explore **pricing strategies**, **discount impacts**, **customer ratings**, and **review patterns**.  
 Using **Python**, **Pandas**, **Seaborn**, **Matplotlib**, and **Streamlit**, we transformed raw data into actionable insights and built an **interactive dashboard** to visualize the findings.

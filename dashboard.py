@@ -9,7 +9,7 @@ st.set_page_config(page_title="Amazon Sales Dashboard", layout="wide")
 # --- Load Data ---
 @st.cache_data
 def load_data():
-    df = pd.read_csv(r"C:\Users\Basmala\OneDrive\Desktop\Amason\Data\cleaned_data.csv")
+    df = pd.read_csv(r"C:\Users\Basmala\OneDrive\Desktop\Amason\Data\cleaned_data_no_outliers.csv")
     return df
 
 df = load_data()
@@ -40,6 +40,9 @@ filtered_df = df[(df['category'] == selected_category) &
                  (df['rating'] >= rating_range[0]) & 
                  (df['rating'] <= rating_range[1])]
 
+# Limit to first 20 products in the selected category
+filtered_df = filtered_df.head(20)
+
 # --- Main Title ---
 st.title("🛒 Amazon Sales Dashboard")
 
@@ -69,37 +72,48 @@ with chart1:
     sns.barplot(x=discount_distribution.index, y=discount_distribution.values, palette='viridis', ax=ax1)
     ax1.set_xlabel("Discount Percentage")
     ax1.set_ylabel("Number of Products")
+    ax1.grid(True, linestyle='--', alpha=0.5)  # Add gridlines for better visualization
     st.pyplot(fig1)
 
-# 2. User Reviews Distribution (Pie Chart)
+# 2. Product Distribution by Rating (Pie Chart)
 with chart2:
-    st.subheader("User Reviews Distribution")
-    user_reviews = filtered_df['user_name'].value_counts().head(10)  # Top 10 users by number of reviews
-    fig2, ax2 = plt.subplots()
-    ax2.pie(user_reviews, labels=user_reviews.index, autopct='%1.1f%%', startangle=90, colors=sns.color_palette('pastel'))
-    ax2.axis('equal')
+    st.subheader("Product Distribution by Rating")
+    rating_distribution = filtered_df['rating'].value_counts().sort_index()  # Distribution based on product ratings
+    fig2, ax2 = plt.subplots(figsize=(8, 8))
+    wedges, texts, autotexts = ax2.pie(rating_distribution, 
+                                        labels=rating_distribution.index, 
+                                        autopct='%1.1f%%', 
+                                        startangle=90, 
+                                        colors=sns.color_palette("Blues", len(rating_distribution)), 
+                                        wedgeprops={'edgecolor': 'black', 'linewidth': 1, 'linestyle': 'solid'},
+                                        textprops={'color': 'black', 'fontsize': 12, 'fontweight': 'bold'})
+    
+    ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
     st.pyplot(fig2)
 
-# --- More Detailed Charts ---
+# --- Additional Charts for Aesthetics & Insights ---
 st.markdown("---")
 chart3, chart4 = st.columns(2)
 
+# 1. Heatmap showing the relationship between price and rating
 with chart3:
-    st.subheader("Price vs Rating")
-    fig3, ax3 = plt.subplots(figsize=(8, 5))
-    sns.scatterplot(data=filtered_df, x='discounted_price', y='rating', hue='rating', palette='coolwarm', edgecolor='black', ax=ax3)
-    ax3.set_xlabel("Discounted Price")
-    ax3.set_ylabel("Rating")
-    st.pyplot(fig3)
+    st.subheader("Heatmap: Price vs Rating")
+    correlation_matrix = filtered_df[['discounted_price', 'rating']].corr()
+    fig5, ax5 = plt.subplots(figsize=(8, 6))
+    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', cbar=True, ax=ax5)
+    ax5.set_title("Correlation Heatmap between Price and Rating")
+    st.pyplot(fig5)
 
+# 2. Boxplot to examine price distribution and ratings
 with chart4:
-    st.subheader("Average Rating per Product (Top 10)")
-    top_avg = filtered_df.groupby('product_name')['rating'].mean().sort_values(ascending=False).head(10)
-    fig4, ax4 = plt.subplots(figsize=(8, 5))
-    sns.barplot(x=top_avg.values, y=top_avg.index, palette='Blues_r', ax=ax4)
-    ax4.set_xlabel("Average Rating")
-    ax4.set_ylabel("Product")
-    st.pyplot(fig4)
+    st.subheader("Boxplot: Price and Rating Distribution")
+    fig6, ax6 = plt.subplots(figsize=(8, 6))
+    sns.boxplot(data=filtered_df[['discounted_price', 'rating']], ax=ax6, palette="Set2")
+    ax6.set_title('Price vs Rating Distribution')
+    ax6.set_xlabel('Price / Rating')
+    ax6.set_ylabel('Value')
+    ax6.grid(True, linestyle='--', alpha=0.5)  # Add gridlines for better visualization
+    st.pyplot(fig6)
 
 # --- Full Data Table ---
 st.markdown("---")

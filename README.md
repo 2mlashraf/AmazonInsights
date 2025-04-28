@@ -1,38 +1,54 @@
 # 📊 Amazon Products Data Analysis 
 ![Amazon Sales Dataset EDA.jpg](https://user-images.githubusercontent.com/109474596/204128780-5a28ed57-53f6-4cf7-8d22-c8b8598138a1.png)
 
-Welcome to our Amazon Products Data Analysis project 🤩 
-- In this project, we dive deep into an Amazon products dataset to explore **pricing strategies**, **discount impacts**, **customer ratings**, and **review patterns**.  
-Using **Python**, **Pandas**, **Seaborn**, **Matplotlib**, and **Streamlit**, we transformed raw data into actionable insights and built an **interactive dashboard** to visualize the findings.
+
+## **Project Overview**
+This project involves a comprehensive analysis of an Amazon products dataset, aimed at uncovering actionable insights related to **pricing strategies**, **discount effects**, **customer ratings**, and **review trends**. The analysis leverages the power of **Python**, **Pandas**, **Seaborn**, **Matplotlib**, and **Streamlit** to transform raw data into meaningful information. Additionally, an interactive dashboard has been developed to facilitate dynamic data exploration and visualization.
 
 ---
 
-##  What We Did
-- Loaded and cleaned the Amazon product dataset.
-- Handled missing or incorrect data types.
-- Conducted **price analysis**, **discount analysis**, and **rating review analysis**.
-- Detected **outliers** and **anomalies** in product performance.
-- Created **interactive dashboards** using Streamlit to display KPIs and visualizations.
---- 
-## 📊 Amazon Sales Dashboard
+## **Project Objectives**
+The primary objectives of this project are as follows:
+- **Data Exploration**: Investigate pricing structures, discount patterns, customer reviews, and ratings across various product categories.
+- **Data Cleaning**: Address missing data, data type inconsistencies, and ensure uniformity across the dataset.
+- **Insight Extraction**: Derive actionable insights based on product performance, customer behavior, and trends in the dataset.
+- **Data Visualization**: Utilize visualization techniques to present key findings clearly and concisely.
+- **Interactive Dashboard**: Develop an interactive dashboard that allows users to explore the data and visualize key metrics.
 
-This interactive **Streamlit dashboard** allows you to explore and analyze Amazon products data, focusing on key metrics such as pricing, discounts, ratings, and user reviews. The dashboard offers several interactive filters to explore different product categories, price ranges, and rating criteria.
+---
 
-### Key Features:
-- **KPI Metrics:** View total products, average ratings, total discounts, and total revenue.
-- **Product Distribution:** Visualize product distribution by discount percentage.
-- **User Reviews:** See a distribution of top users by reviews with a pie chart.
-- **Price vs Rating:** Explore the relationship between discounted price and product ratings.
-- **Top Products by Rating:** View the top 10 products with the highest average ratings.
+## **Project Methodology**
+1. **Data Loading & Cleaning**:
+   - The dataset was loaded and cleaned by addressing missing values, ensuring correct data types, and standardizing column formats.
+   
+2. **Data Analysis**:
+   - Conducted a detailed analysis of pricing, discount percentages, and ratings, identifying patterns and correlations.
+   
+3. **Outlier Detection**:
+   - Identified outliers and anomalies in product performance, focusing on discrepancies between price, discount, and customer ratings.
+   
+4. **Interactive Dashboard**:
+   - Developed an interactive dashboard using **Streamlit**, enabling dynamic filtering of product data and visual exploration of key performance indicators.
 
-The dashboard is designed to help businesses and analysts understand product performance, identify trends, and make data-driven decisions.
+---
 
-### How to Use:
-- **Select Filters:** Choose product category, price range, and rating range from the sidebar.
-- **Explore KPIs and Charts:** View key performance indicators and visual charts based on your selected filters.
-- **Data Preview:** Access a table showing the filtered data for detailed insights.
+## 📊 **Amazon Sales Dashboard**
 
-Run the dashboard with the following command:
+The **Streamlit-based dashboard** provides an interactive platform for analyzing and visualizing key product metrics. Users can explore a variety of filters, including product category, price range, and rating criteria. The dashboard allows for the investigation of key metrics such as pricing, discount percentages, product ratings, and review distribution.
+
+### **Key Features**:
+- **KPI Metrics**: View overall product count, average ratings, total discounts, and total revenue.
+- **Product Distribution**: Visualize product distribution based on discount percentages.
+- **User Reviews**: Display the distribution of top users by reviews through pie charts and other visualizations.
+- **Price vs Rating**: Examine the relationship between price, discount percentage, and product ratings.
+- **Top Rated Products**: Identify the top 10 products with the highest average ratings.
+
+### **Usage Instructions**:
+1. **Select Filters**: Choose product categories, price ranges, and rating ranges from the sidebar.
+2. **Explore KPIs & Visualizations**: View key performance indicators and visualizations that update based on the selected filters.
+3. **Access Data Preview**: View a detailed table of the filtered data for further insights.
+
+To run the dashboard, use the following command:
 ```bash
 streamlit run dashboard.py
 ```
